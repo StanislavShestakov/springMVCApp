@@ -3,6 +3,7 @@ package ua.shestakov.springcourse.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,10 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class FirstController {
 
     @GetMapping("/hello")
-    public String helloPage(HttpServletRequest requet){
-            String name= requet.getParameter("name");
-            String surname= requet.getParameter("surname");
-
+    public String helloPage(@RequestParam("name") String name,@RequestParam("surname") String surname){
 
         System.out.println("Hello, "+name + " " + surname) ;
             return "first/hello";
