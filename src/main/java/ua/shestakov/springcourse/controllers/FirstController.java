@@ -21,6 +21,39 @@ public class FirstController {
         model.addAttribute("message","Hello, "+name + " " + surname);
             return "first/hello";
     }
+
+    @GetMapping("/calculator")
+    public String calculatorPage(@RequestParam(value = "a", required = false) Integer a,
+                                 @RequestParam(value = "b", required = false) Integer b,
+                                 @RequestParam(value = "action", required = false) String action,
+                                 Model model){
+
+        if(action == null){
+            model.addAttribute("answer", "Please set your params! ");
+        }
+        else if(action.equals("addition")) {
+            int res = a + b;
+            model.addAttribute("answer", "Answer is: " + res);
+        }
+        else if(action.equals("multiplication")) {
+            int res = a * b;
+            model.addAttribute("answer", "Answer is: " + res);
+        }
+        else if(action.equals("subtraction")) {
+            int res = a - b;
+            model.addAttribute("answer", "Answer is: " + res);
+        }
+        else if(action.equals("divison")) {
+            double res = (double) (a) / (double) (b);
+            model.addAttribute("answer", "Answer is: " + res);
+        }
+        else{
+            model.addAttribute("answer", "Illigal arichmetical operation .... ");
+        }
+        return "first/calculator";
+    }
+
+
     @GetMapping("/goodbye")
     public String goodByePage(){
         return "first/goodbye";
